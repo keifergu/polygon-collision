@@ -1,0 +1,25 @@
+{
+  "name": "polygon-collision",
+  "version": "0.0.0",
+  "description": "polygon collision 2d circle",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keifergu/polygon-collision.git"
+  },
+  "keywords": [
+    "polygon",
+    "collision",
+    "2d",
+    "circle"
+  ],
+  "author": "Keifer Gu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keifergu/polygon-collision/issues"
+  },
+  "homepage": "https://github.com/keifergu/polygon-collision#readme"
+}
