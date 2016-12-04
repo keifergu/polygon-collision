@@ -10,12 +10,12 @@ describe('Vector', function(){
 	describe('#constructor', function(){
 		var numVector = new Vector(10, 20);
 		var vecVector = new Vector(numVector);
-		it('constructor by number x & y', function(){
+		it('construct by number x & y', function(){
 			numVector.x.should.equal(10);
 			numVector.y.should.equal(20);
 		});
 
-		it('constructor by Vector', function(){
+		it('construct by Vector', function(){
 			vecVector.x.should.equal(10);
 			vecVector.y.should.equal(20);
 		});
