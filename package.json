@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/keifergu/polygon-collision/issues"
   },
-  "homepage": "https://github.com/keifergu/polygon-collision#readme"
+  "homepage": "https://github.com/keifergu/polygon-collision#readme",
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
 }
