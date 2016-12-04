@@ -1,3 +1,5 @@
+'use strict';
+
 var should = require('chai').should;
 var Vector = require('../lib/vector.js');
 
