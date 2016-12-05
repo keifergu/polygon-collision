@@ -22,6 +22,8 @@ describe('Collision', () => {
   	polygon: "polygon",
   };
 
+  //TODO： 对内部属性进行单元测试
+  
 	describe('#polygon with circle', () => {
 		it('collision ', () => {
 			let dp1 = {

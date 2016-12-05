@@ -1,6 +1,6 @@
 let should = require('chai').should;
 let Vector = require('../lib/vector');
-let {Point, Line, Circle, Polygon} = require('../lib/graphical')
+let {Point, Line, Circle, Polygon} = require('../lib/graphical');
 
 should();
 
