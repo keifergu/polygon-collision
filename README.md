@@ -3,7 +3,8 @@ polygon-collision
 The collision detection module.
 
 ![travis-ci](https://travis-ci.org/keifergu/polygon-collision.svg?branch=master)
-![codecov](https://codecov.io/gh/keifergu/polygon-collision/branch/master/graph/badge.svg)
+[![codecov](https://codecov.io/gh/keifergu/polygon-collision/branch/master/graph/badge.svg)](https://codecov.io/gh/keifergu/polygon-collision)
+
 
 ## Install
 

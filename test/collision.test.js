@@ -22,28 +22,42 @@ describe('Collision', () => {
   	polygon: "polygon",
   };
 
-  //TODO： 对内部属性进行单元测试
+  describe('#shape word', () => {
+  	it('should have the equal shape list', () => {
+  		cget('shapeWord').should.eql(shapeWord);  	
+  	});
+  });
   
 	describe('#polygon with circle', () => {
-		it('collision ', () => {
-			let dp1 = {
-					type: shapeWord.polygon,
-					points: polygonPoints[0].map((v) => {return {x:v[0],y:v[1]};}),
-				},
-				dc1 = {
-					type: shapeWord.circle,
-					points: [{x:50,y:40}],
-					r: 40,
-				},
-				dc2 = {
-					type: shapeWord.circle,
-					points: [{x:250, y:240}],
-					r: 20,
-				};
-			let res1 = collision(dp1, dc1);
-			let res2 = collision(dp1, dc2);
-			res2.should.to.be.equal(true);
-			res1.should.to.be.equal(false);
+
+		let dp1 = {
+				type: shapeWord.polygon,
+				points: polygonPoints[0].map((v) => {return {x:v[0],y:v[1]};}),
+			},
+			dc1 = {
+				type: shapeWord.circle,
+				points: [{x:50,y:40}],
+				r: 40,
+			},
+			dc2 = {
+				type: shapeWord.circle,
+				points: [{x:250, y:240}],
+				r: 20,
+			};
+
+		it('collision tes with (polygon, circle)', () => {
+			let res11 = collision(dp1, dc1);
+			let res21 = collision(dp1, dc2);
+			res11.should.eq(false);
+			res21.should.eq(true);
 		});
+
+		it('collision test with (circle, polygon', () => {
+			let res12 = collision(dc1, dp1);
+			let res22 = collision(dc2, dp1);
+			res12.should.eq(false);
+			res22.should.eq(true);
+		});
+
 	});
 });
