@@ -1,5 +1,5 @@
 var should = require('chai').should;
-var Vector = require('../lib/vector.js');
+var Vector = require('../src/vector.js');
 
 should();
 

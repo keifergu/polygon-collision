@@ -1,8 +1,8 @@
 let rewire = require('rewire');
 let should = require('chai').should;
-let collision = require('../lib/collision');
+let collision = require('../src/collision');
 // 此处使用 rewire ，便于测试内部没有暴露出来的属性
-let rewireCollision = rewire('../lib/collision.js');
+let rewireCollision = rewire('../src/collision.js');
 
 should();
 
