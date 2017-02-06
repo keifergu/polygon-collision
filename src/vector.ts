@@ -1,82 +1,98 @@
-var Vector = (function () {
+interface Point {
+    x: number,
+    y: number
+}
+
+class Vector {
+
+    x: number;
+    y: number;
+
     /**
      * Vector 的构造函数
-     * @param  {Obecjt|x，y}} point 如果传入一个参数，则该参数需拥有x,y属性；或者直接传入x,y
+     * @param  {Point} 传入一个包含x,y的对象
      */
-    function Vector(point) {
-        if (arguments.length === 1) {
-            this.x = point.x;
-            this.y = point.y;
-        }
-        else {
-            this.x = arguments[0];
-            this.y = arguments[1];
-        }
+    constructor(point: Point) {
+        this.x = point.x;
+        this.y = point.y;
     }
+
     /**
      * 向量相加
-     * @param {[type]} vector 相加的向量
+     * @param {Vector} vector 相加的向量
      */
-    Vector.prototype.add = function (vector) {
-        return new Vector(this.x + vector.x, this.y + vector.y);
+    add(vector: Vector): Vector {
+        this.x += vector.x;
+        this.y += vector.y;
+        return this;
     };
+
     /**
      * 向量相减
-     * @param  {[type]} vector 被减的向量
-     * @return {[type]}        返回一个新向量
+     * @param  {Vector} vector 被减的向量
+     * @return {Vector}        返回一个新向量
      */
-    Vector.prototype.substract = function (vector) {
-        return new Vector(this.x - vector.x, this.y - vector.y);
+    substract(vector: Vector): Vector {
+        this.x -= vector.x;
+        this.y -= vector.y;
+        return this;
     };
+
     /**
-     * 通过两点获得一个向量
-     * @param  {[type]} vector 另一个点
-     * @return {[type]}        新向量，由传入的点指向本身的点
+     * 获得该向量端点到参数点的向量
+     * @param  {Point}  point   参数点
+     * @return {Vector}         新向量，由参数点指向自身的端点
      */
-    Vector.prototype.edge = function (vector) {
-        return this.substract(vector);
+    edge(point: Point): Vector {
+        return this.substract(new Vector(point));
     };
+
     /**
      * 求该向量的垂直向量
-     * @return {[type]}
+     * @return {Vector}
      */
-    Vector.prototype.prependicular = function () {
-        return new Vector(this.y, -this.x);
+    prependicular(): Vector {
+        return new Vector({x: this.y, y: -this.x});
     };
+
     /**
      * 获得该向量的模，即长度
-     * @return {Float} 模的值
+     * @return {number} 模的值
      */
-    Vector.prototype.getMagnitude = function () {
+    getMagnitude(): number {
         return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
     };
+
     /**
      * 获得该向量的单位向量
-     * @return {Vector} 返回一个新向量
+     * @return {Vector} 返回单位向量
      */
-    Vector.prototype.normalize = function () {
-        var v = new Vector(0, 0), m = this.getMagnitude();
+    normalize(): Vector {
+        let v = new Vector({x: 0, y: 0}),
+            m = this.getMagnitude();
         if (m !== 0) {
             v.x = this.x / m;
             v.y = this.y / m;
         }
         return v;
     };
+
     /**
      * 获得两个向量的点积
      * @param  {Vector} vector 另一个向量
-     * @return {Vector}        返回一个新向量
+     * @return {number}        返回点积值
      */
-    Vector.prototype.dotProduct = function (vector) {
+    dotProduct(vector: Vector): number {
         return this.x * vector.x + this.y * vector.y;
     };
+
     /**
-     * 获取法向量
+     * 获取法向量(单位向量的垂直向量)
      * @return {Vector}
      */
-    Vector.prototype.normal = function () {
+    normal(): Vector {
         return this.prependicular().normalize();
     };
-    return Vector;
-}());
+}
+
 module.exports = Vector;

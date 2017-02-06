@@ -4,7 +4,7 @@
   "description": "polygon collision 2d circle",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -r ts-node/register"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,13 @@
   },
   "homepage": "https://github.com/keifergu/polygon-collision#readme",
   "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.39",
     "@types/node": "^7.0.5",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
-    "rewire": "^2.5.2"
+    "rewire": "^2.5.2",
+    "ts-node": "^2.0.0"
   },
   "dependencies": {
     "ts-loader": "^2.0.0",
