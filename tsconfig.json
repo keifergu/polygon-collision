@@ -2,21 +2,21 @@
     "compilerOptions": {
         "module": "commonjs",
         "outFile": "./dist/bundle.js",
+        "target": "es5",
         "removeComments": true,
         "noImplicitAny": true,
         "sourceMap": true,
         "types": [
-            "node"
+            "node",
+            "mocha",
+            "chai"
         ],
         "typeRoots": [
             "node_modules/@types"
         ]
     },
     "files": [
-        "src/*.ts"
-    ],
-    "include": [
-        "src/**/*"
+        "src/index.ts"
     ],
     "exclude": [
         "node_modules",

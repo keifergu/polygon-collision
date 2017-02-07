@@ -3,18 +3,26 @@ interface Point {
     y: number
 }
 
-class Vector {
+export class Vector {
 
     x: number;
     y: number;
 
     /**
      * Vector 的构造函数
-     * @param  {Point} 传入一个包含x,y的对象
+     * @param {Point}   只使用具有 x,y 属性的对象实例化
+     * @param {number}  使用两个数字实例化，则第一个参数为数字
      */
-    constructor(point: Point) {
-        this.x = point.x;
-        this.y = point.y;
+    constructor(point: Point);
+    constructor(x: number, y: number);
+    constructor(point: any, other?: number) {
+        if(typeof point === 'number') {
+            this.x = point;
+            this.y = other;
+        } else if(typeof point === 'object'){
+            this.x = point.x;
+            this.y = point.y;
+        }
     }
 
     /**
@@ -94,5 +102,3 @@ class Vector {
         return this.prependicular().normalize();
     };
 }
-
-module.exports = Vector;

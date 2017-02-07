@@ -1,5 +1,5 @@
-var should = require('chai').should;
-var Vector = require('../src/vector');
+import { should } from 'chai';
+import { Vector } from '../src/vector';
 
 should();
 
@@ -7,19 +7,19 @@ describe('Vector', function(){
 
 	describe('#constructor', function(){
 		let numVector = new Vector({x:10, y:20});
-		let vecVector = new Vector(numVector);
+		let vecVector = new Vector(10, 20);
 		it('construct by object {x, y}', function(){
 			numVector.x.should.eq(10);
 			numVector.y.should.eq(20);
 		});
 
-		it('construct by Vector', function(){
+		it('construct by two numbers', function(){
 			vecVector.x.should.eq(10);
 			vecVector.y.should.eq(20);
 		});
 	});
 	describe('#math test', function(){
-		let v1, v2;
+		let v1: Vector, v2: Vector;
 		
 		beforeEach(function() {
 			v1 = new Vector({x:120,y:200}),
