@@ -1,5 +1,5 @@
-var Vector = require('./vector');
-var {Point, Line, Circle, Polygon} = require('./graphical');
+import { Vector } from './vector';
+import { Point, Line, Circle, Polygon } from './graphical';
 
 /**
  * 定义外部传入参数的type字符常量
@@ -12,24 +12,52 @@ const shapeWord = {
 	polygon: "polygon",
 };
 
+/**
+ * 用户调用碰撞检测方法时需要传入的数据类型
+ */
+interface InputData {
+	shape: string;
+	points: Point[];
+	radius?: number;
+}
+
+/**
+ * 投影的数据类型
+ */
+interface Projection {
+	max: number;
+	min: number;
+}
+
+interface CollisionMethods {
+	[index: string]: (s1: InputData, s2: InputData) => boolean;
+}
 
 /**
  * 保存所有碰撞检测主函数的对象
- * 函数命名：按照 "图形名小写_图形名小写" 的格式
- * 注意：所有函数定义使用箭头函数，这样绑定this，防止可能出现的问题
+ * 函数命名按照 "图形名_图形名" 的格式
  * @type {Object}
  */
-let collisionObject = {
+let collisionObject: CollisionMethods;
+
+collisionObject = {
 	/**
 	 * 多边形与圆形的碰撞检测
-	 * @param  {Circle} circle   圆形
-	 * @return {Boolean}         true表示碰撞，false表示未碰撞
+	 * @param 	{Circle}	circle	圆形
+	 * @param	{Polygon}	polygon	多边形
+	 * @return	{boolean}			true表示碰撞，false表示未碰撞
 	 */
-	polygon_circle: function(polygon, circle){
-		let pj1, pj2, overlap,
-			c = new Circle(circle.data),
-		  p = new Polygon(polygon.data),
-			normals = p.getNormals();
+	polygon_circle: function(polygon: InputData, circle: InputData): boolean{
+		let c: Circle, p: Polygon,
+			// 多边形的所有法向量
+			normals: Vector[],
+			// 对于某一个向量，多边形和圆形在此处投影重合的值
+			overlap: number,
+			pj1: Projection, pj2: Projection;
+		
+		c = new Circle(circle.points[0].x, circle.points[0].x, circle.radius);
+		p = new Polygon(polygon.points);
+		normals = p.getNormals();
 		for(let n of normals) {
 			pj2 = c.getProjection(n);
 			pj1 = p.getProjection(n);
@@ -41,7 +69,7 @@ let collisionObject = {
 		return true;
 	},
 
-	circle_polygon: function(circle, polygon){
+	circle_polygon: function(circle: InputData, polygon: InputData): boolean{
 		return this.polygon_circle(polygon, circle);
 	},
 
@@ -56,6 +84,7 @@ let collisionObject = {
  * @param  {Object} shape 从外部传入的图形数据
  * @return {Object}       内部使用的数据格式
  */
+/*
 function dataTransfer(shape) {
 	let resultData, type = shape.type;
 	switch(type) {
@@ -91,11 +120,13 @@ function dataTransfer(shape) {
 			throw shape.type + " of the `shape.type` must belong to " + shapeWord.values ;
 	}
 	return resultData;
-}
+}*/
 
-module.exports = function collision(s1 = {}, s2 = {}) {
-	s1 = dataTransfer(s1);
-	s2 = dataTransfer(s2);
-	// 使用‘s1.type’和 's2.type'去动态的调用方法，避免了大量的switch,case语句
-	return collisionObject[s1.type + "_" + s2.type](s1, s2);
+export function collision(s1: InputData, s2: InputData): boolean {
+	/**
+	 *  使用‘s1.shape’和 's2.shape'去动态的调用方法
+	 * 	避免了大量的switch,case语句
+	 */
+	let methodName = s1.shape + "_" + s2.shape;
+	return collisionObject[methodName](s1, s2);
 };

@@ -1,1 +1,1 @@
-module.exports = require('./src/collision');
+module.exports = require('./collision').collision;

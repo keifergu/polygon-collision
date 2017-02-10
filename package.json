@@ -1,39 +1,40 @@
 {
-  "name": "polygon-collision",
-  "version": "0.0.1",
-  "description": "polygon collision 2d circle",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha -r ts-node/register"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/keifergu/polygon-collision.git"
-  },
-  "keywords": [
-    "polygon",
-    "collision",
-    "2d",
-    "circle"
-  ],
-  "author": "Keifer Gu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/keifergu/polygon-collision/issues"
-  },
-  "homepage": "https://github.com/keifergu/polygon-collision#readme",
-  "devDependencies": {
-    "@types/chai": "^3.4.34",
-    "@types/mocha": "^2.2.39",
-    "@types/node": "^7.0.5",
-    "chai": "^3.5.0",
-    "mocha": "^3.2.0",
-    "rewire": "^2.5.2",
-    "ts-node": "^2.0.0"
-  },
-  "dependencies": {
-    "ts-loader": "^2.0.0",
-    "typescript": "^2.1.5",
-    "webpack": "^2.2.1"
-  }
+    "name": "polygon-collision",
+    "version": "0.0.1",
+    "description": "polygon collision 2d circle",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha -r ts-node/register ./test/*.test.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/keifergu/polygon-collision.git"
+    },
+    "keywords": [
+        "polygon",
+        "collision",
+        "2d",
+        "circle"
+    ],
+    "author": "Keifer Gu",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/keifergu/polygon-collision/issues"
+    },
+    "homepage": "https://github.com/keifergu/polygon-collision#readme",
+    "devDependencies": {
+        "@types/chai": "^3.4.34",
+        "@types/mocha": "^2.2.39",
+        "@types/node": "^7.0.5",
+        "@types/rewire": "^2.5.27",
+        "chai": "^3.5.0",
+        "mocha": "^3.2.0",
+        "rewire": "^2.5.2",
+        "ts-node": "^2.0.0"
+    },
+    "dependencies": {
+        "ts-loader": "^2.0.0",
+        "typescript": "^2.1.5",
+        "webpack": "^2.2.1"
+    }
 }

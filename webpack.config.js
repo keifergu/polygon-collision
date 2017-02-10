@@ -1,14 +1,14 @@
 module.exports = {
-    entry: './src/app.ts',
+    entry: './src/collision.ts',
     output: {
-        filename: 'index.js'
+        filename: './dist/collision.js'
     },
     resolve: {
-        extensions: ['.webpack.js', 'web.js','.ts', '.js']
+        extensions: ['.webpack.js', 'web.js', '.ts', '.js']
     },
     module: {
         loaders: [
-            {test: /\.ts$/, loader: 'ts-loader'}
+            { test: /\.ts$/, loader: 'ts-loader' }
         ]
     }
 }
