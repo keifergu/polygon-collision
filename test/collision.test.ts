@@ -28,20 +28,50 @@ const shapeWord = {
 
 describe('Collision', () => {
     let polygonPoints = [
-        [
-            [250, 130],
-            [250, 250],
-            [350, 250],
-            [400, 150]
+            [
+                [250, 130],
+                [250, 250],
+                [350, 250],
+                [400, 150]
+            ],
+            [
+                [500, 100], // 与 dp1 不碰撞
+                [500, 200],
+                [600, 200],
+                [600, 100]
+            ],
+            [
+                [100, 100], // 与 dp1 碰撞
+                [100, 200],
+                [300, 200],
+                [300, 100]
+            ]
         ],
-        [
-            [400, 130],
-            [400, 200],
-            [490, 100],
-            [450, 10]
-        ]
-    ];
+        dp1: InputData, dp2: InputData, dp3: InputData,
+        dc1: InputData, dc2: InputData;
     
+    dp1 = {
+        shape: shapeWord.polygon,
+        points: polygonPoints[0].map((v) => { return { x: v[0], y: v[1] }; }),
+    };
+    dp2 = {
+        shape: shapeWord.polygon,
+        points: polygonPoints[1].map((v) => { return { x: v[0], y: v[1] }; }),
+    };
+    dp3 = {
+        shape: shapeWord.polygon,
+        points: polygonPoints[2].map((v) => { return { x: v[0], y: v[1] }; }),
+    };
+    dc1 = {
+        shape: shapeWord.circle,
+        points: [{ x: 50, y: 40 }],
+        radius: 40,
+    };
+    dc2 = {
+        shape: shapeWord.circle,
+        points: [{ x: 250, y: 240 }],
+        radius: 20,
+    };
 
     describe('#shape word', () => {
         it('should have the equal shape list', () => {
@@ -50,23 +80,6 @@ describe('Collision', () => {
     });
 
     describe('#polygon with circle', () => {
-
-        let dp1: InputData, dc1: InputData, dc2: InputData;
-
-        dp1 = {
-            shape: shapeWord.polygon,
-            points: polygonPoints[0].map((v) => { return { x: v[0], y: v[1] }; }),
-        };
-        dc1 = {
-            shape: shapeWord.circle,
-            points: [{ x: 50, y: 40 }],
-            radius: 40,
-        };
-        dc2 = {
-            shape: shapeWord.circle,
-            points: [{ x: 250, y: 240 }],
-            radius: 20,
-        };
 
         it('collision test with (polygon, circle)', () => {
             let res11 = collision(dp1, dc1);
@@ -82,5 +95,16 @@ describe('Collision', () => {
             res22.should.eq(true);
         });
 
+    });
+
+    describe('#polygon with polygon', () => {
+        it('should collision', () => {
+            let res = collision(dp1, dp3);
+            res.should.eq(true);
+        })
+        it('should not collision', () => {
+            let res = collision(dp1, dp2);
+            res.should.eq(false);
+        })
     });
 });
