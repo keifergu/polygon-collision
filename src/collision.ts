@@ -73,6 +73,28 @@ collisionObject = {
 		return this.polygon_circle(polygon, circle);
 	},
 
+	polygon_polygon: function(p1: InputData, p2: InputData): boolean {
+		let dp1: Polygon, dp2: Polygon,
+			// 多边形的所有法向量
+			normals: Vector[],
+			// 对于某一个向量，多边形和圆形在此处投影重合的值
+			overlap: number,
+			pj1: Projection, pj2: Projection;
+		
+		dp1 = new Polygon(p1.points);
+		dp2 = new Polygon(p2.points);
+		normals = dp2.getNormals();
+		for(let n of normals) {
+			pj2 = dp1.getProjection(n);
+			pj1 = dp2.getProjection(n);
+			overlap = Math.min(pj1.max, pj2.max) - Math.max(pj1.min, pj2.min);
+			if (overlap < 0 ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	//TODO： 编写其他类型的碰撞检测函数
 };
 
