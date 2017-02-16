@@ -73,10 +73,19 @@ describe('Collision', () => {
         radius: 20,
     };
 
-    describe('#shape word', () => {
+    describe('#shape world', () => {
         it('should have the equal shape list', () => {
             cget('shapeWord').should.eql(shapeWord);
         });
+        it('should throw error while shape not exist', () => {
+            let errDp = {
+                shape: 'circel',
+                points: [{ x: 50, y: 40 }],
+                radius: 40,
+            };
+            let errDp2 = errDp;
+            (() => collision(errDp, errDp2)).should.throw(ReferenceError, "shape world not exist");
+        })
     });
 
     describe('#polygon with circle', () => {
