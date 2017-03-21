@@ -48,7 +48,7 @@ describe('Collision', () => {
             ]
         ],
         dp1: InputData, dp2: InputData, dp3: InputData,
-        dc1: InputData, dc2: InputData;
+        dc1: InputData, dc2: InputData, dc3: InputData;
     
     dp1 = {
         shape: shapeWord.polygon,
@@ -71,6 +71,11 @@ describe('Collision', () => {
         shape: shapeWord.circle,
         points: [{ x: 250, y: 240 }],
         radius: 20,
+    };
+    dc3 = {
+        shape: shapeWord.circle,
+        points: [{ x: 40, y: 40}],
+        radius: 20
     };
 
     describe('#shape world', () => {
@@ -116,4 +121,16 @@ describe('Collision', () => {
             res.should.eq(false);
         })
     });
+
+    describe('#circle with circle', () => {
+        it('should collision', () => {
+            let res = collision(dc1, dc3);
+            res.should.eq(true)
+        })
+
+        it('should not collision', () => {
+            let res = collision(dc1, dc2);
+            res.should.eq(false)
+        })
+    })
 });

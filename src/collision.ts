@@ -96,6 +96,20 @@ collisionObject = {
 			}
 		}
 		return true;
+	},
+
+	circle_circle: function(ca: InputData, cb: InputData) {
+		let dca: Circle, dcb: Circle,
+			distance: number;
+		
+		// 获得两个圆心的向量差，再获得该差的长度。即获得圆心的距离
+		distance = new Vector(ca.points[0]).substract(new Vector(cb.points[0])).getMagnitude();
+
+		// 如果圆心距离大于半径和，则没有碰撞;
+		// 圆心距离小于半径和，则发生碰撞
+		return distance > ca.radius + cb.radius ?
+			false :
+			true
 	}
 
 	//TODO： 编写其他类型的碰撞检测函数
